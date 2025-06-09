@@ -1,7 +1,7 @@
 import { Product, ApiResponse, CreateProductRequest, ApproveFinancingRequest, RequestManufacturingRequest } from '@/types';
 
 // Use environment variable for API URL, fallback to Azure VM IP
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://20.189.232.16:8000/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://20.189.232.16:443/api';
 
 async function apiCall<T>(endpoint: string, options?: RequestInit): Promise<ApiResponse<T>> {
   const url = `${API_BASE_URL}${endpoint}`;
@@ -84,7 +84,7 @@ export const healthAPI = {
   checkHealth: (): Promise<any> => {
     const healthUrl = process.env.NEXT_PUBLIC_API_URL 
       ? process.env.NEXT_PUBLIC_API_URL.replace('/api', '/health')
-      : 'http://20.189.232.16:8000/health';
+      : 'https://20.189.232.16:443/health';
     return fetch(healthUrl).then(res => res.json());
   },
 }; 
